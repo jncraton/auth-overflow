@@ -34,7 +34,7 @@ void authenticate(Session *s) {
 
   s->permissions = UNAUTHORIZED;
 
-  printf("\nNode: cluster-01.omnicorp.net\n");
+  printf("\nNode: cluster-01.example.com\n");
   printf("Account: %s\n", s->username);
   printf("Password: ");
 
