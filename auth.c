@@ -19,12 +19,6 @@ void banner() {
   printf("==================================================\n");
 }
 
-void sys_diag() {
-  printf("[INFO] Entropy pool initialized.\n");
-  printf("[INFO] Security descriptors loaded.\n");
-  printf("[INFO] All systems nominal.\n");
-}
-
 void log_auth(const char *user, int status) {
   time_t now = time(NULL);
   char *ts = ctime(&now);
@@ -67,13 +61,18 @@ int main() {
   Session session;
   memset(&session, 0, sizeof(Session));
 
+  banner();
+
   srand(time(NULL));
+  printf("[INFO] Entropy pool initialized.\n");
+
   session.session_id = rand();
+  printf("[INFO] Security descriptors loaded.\n");
+
   strncpy(session.username, "sys_operator", 15);
   strcpy(session.last_command, "NONE");
+  printf("[INFO] All systems nominal.\n");
 
-  banner();
-  sys_diag();
   authenticate(&session);
 
   return 0;
