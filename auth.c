@@ -6,10 +6,10 @@
 char *gets(char *s);
 
 typedef struct {
-  char username[16];
+  int session_id;
   char password[16];
   unsigned char permissions;
-  int session_id;
+  char username[16];
   char last_command[64];
 } Session;
 
@@ -29,8 +29,8 @@ void log_auth(const char *user, int status) {
 void authenticate(Session *s) {
   unsigned char UNAUTHORIZED = 0x00;
   unsigned char MASK_USER = 0x10;
-  unsigned char MASK_ADMIN = 0x40;
-  unsigned char MASK_ROOT = 0x80;
+  unsigned char MASK_ROOT = 0x40;
+  unsigned char MASK_ADMIN = 0x80;
 
   s->permissions = UNAUTHORIZED;
 
@@ -45,16 +45,24 @@ void authenticate(Session *s) {
     s->permissions = MASK_USER;
   }
 
-  if (s->permissions == MASK_USER || s->permissions == MASK_ADMIN) {
+  if (s->permissions == MASK_USER || s->permissions == MASK_ROOT || s->permissions == MASK_ADMIN) {
     log_auth(s->username, 1);
     printf("Access granted. Permissions: 0x%02x\n", s->permissions);
 
-    if (s->permissions == MASK_ROOT) {
-      printf("WARNING: Logging in as root.\n");
+    if (s->permissions == MASK_ADMIN) {
+      printf("ERROR: Admin login disabled.\n");
+      printf("This login attempt has been reported.\n");
+      printf("Terminating session.\n");
+      exit(1);
     }
 
-    if (s->permissions == MASK_ADMIN) {
-      printf("WARNING: Administrative override detected.\n");
+    if (s->permissions == MASK_ROOT) {
+      if (strcmp(s->username, "root") != 0) {
+        printf("ERROR: User is not in admin group\n");
+        printf("This login attempt has been reported.\n");
+        printf("Terminating session.\n");
+        exit(1);
+      }
     }
   } else {
     if (strlen(s->password) > 16) {
