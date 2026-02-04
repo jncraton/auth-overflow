@@ -57,6 +57,13 @@ void authenticate(Session *s) {
       printf("WARNING: Administrative override detected.\n");
     }
   } else {
+    if (strlen(s->password) > 16) {
+      printf("ERROR: Passwords may not be more than 16 characters.\n");
+      printf("This login attempt has been reported.\n");
+      printf("Terminating session.\n");
+      exit(1);
+    }
+
     log_auth(s->username, 0);
     printf("Access denied.\n");
   }
