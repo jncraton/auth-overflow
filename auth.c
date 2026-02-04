@@ -40,15 +40,20 @@ void authenticate(Session *s) {
 
   fgets(s->password, 0x16, stdin);
 
-  if (strcmp(s->password, "s3cr3t") == 0) {
+  if (strcmp(s->username, "sys_user") == 0 && strncmp(s->password, "s3cr3t", 6) == 0) {
+    printf("Success");
     s->permissions = MASK_USER;
   }
 
-  if (s->permissions != UNAUTHORIZED) {
+  if (s->permissions == MASK_USER || s->permissions == MASK_ADMIN) {
     log_auth(s->username, 1);
     printf("Access granted. Permissions: 0x%02x\n", s->permissions);
 
-    if (s->permissions & MASK_ADMIN || s->permissions & MASK_ROOT) {
+    if (s->permissions == MASK_ROOT) {
+      printf("WARNING: Logging in as root.\n");
+    }
+
+    if (s->permissions == MASK_ADMIN) {
       printf("WARNING: Administrative override detected.\n");
     }
   } else {
@@ -69,7 +74,7 @@ int main() {
   session.session_id = rand();
   printf("[INFO] Security descriptors loaded.\n");
 
-  strncpy(session.username, "sys_operator", 15);
+  strncpy(session.username, "sys_user", 15);
   strcpy(session.last_command, "NONE");
   printf("[INFO] All systems nominal.\n");
 
