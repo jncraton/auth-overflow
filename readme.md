@@ -1,4 +1,4 @@
-# Buffer Overflow Lab
+# Authentication Overflow
 
 This lab explores a classic buffer overflow vulnerability in C. You will investigate how improper input handling can lead to unauthorized access.
 
