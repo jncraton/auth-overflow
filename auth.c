@@ -64,7 +64,6 @@ void authenticate(Session *s) {
 
 int main() {
   Session session;
-  memset(&session, 0, sizeof(Session));
 
   banner();
 
@@ -73,6 +72,9 @@ int main() {
 
   session.session_id = rand();
   printf("[INFO] Security descriptors loaded.\n");
+
+  memset(&session, 0, sizeof(Session));
+  printf("[INFO] Zeroed user session.\n");
 
   strncpy(session.username, "sys_user", 15);
   strcpy(session.last_command, "NONE");
