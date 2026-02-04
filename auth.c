@@ -38,7 +38,7 @@ void authenticate(Session *s) {
   printf("Account: %s\n", s->username);
   printf("Credentials: ");
 
-  gets(s->password);
+  fgets(s->password, 0x16, stdin);
 
   if (strcmp(s->password, "s3cr3t") == 0) {
     s->permissions = MASK_USER;
