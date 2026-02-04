@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -fno-stack-protector -z execstack -O0
+CFLAGS = -Wall -Wno-stringop-overflow -fno-stack-protector -z execstack -O0
 
 all: auth
 
