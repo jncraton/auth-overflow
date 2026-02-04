@@ -92,7 +92,7 @@ int main() {
   printf("\nEntering Shell (type 'q' to quit)\n");
 
   while(strncmp(session.last_command, "q", 1) != 0) {
-    printf("\n> ");
+    printf("\n%s> ", session.username);
     fgets(session.last_command, 0x64, stdin);
   }
 
