@@ -8,9 +8,9 @@ auth: auth.c
 
 test: auth
 	# Test valid password
-	echo "s3cr3t" | ./auth | grep "Access granted"
+	printf "s3cr3t\nq\n" | ./auth | grep "Access granted"
 	# Test invalid password
-	echo "wrong" | ./auth | grep "Access denied"
+	printf "wrong\nq\n" | ./auth | grep "Access denied"
 
 clean:
 	rm -f auth
