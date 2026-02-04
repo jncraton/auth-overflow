@@ -36,7 +36,7 @@ void authenticate(Session *s) {
 
   printf("\nNode: cluster-01.omnicorp.net\n");
   printf("Account: %s\n", s->username);
-  printf("Credentials: ");
+  printf("Password: ");
 
   fgets(s->password, 0x16, stdin);
 
