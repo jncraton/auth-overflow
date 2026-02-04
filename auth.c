@@ -27,12 +27,12 @@ void log_auth(const char *user, int status) {
 }
 
 void authenticate(Session *s) {
-  unsigned char MASK_GUEST = 0x01;
+  unsigned char UNAUTHORIZED = 0x00;
   unsigned char MASK_USER = 0x10;
   unsigned char MASK_ADMIN = 0x40;
   unsigned char MASK_ROOT = 0x80;
 
-  s->permissions = MASK_GUEST;
+  s->permissions = UNAUTHORIZED;
 
   printf("\nNode: cluster-01.omnicorp.net\n");
   printf("Account: %s\n", s->username);
@@ -44,7 +44,7 @@ void authenticate(Session *s) {
     s->permissions = MASK_USER;
   }
 
-  if (s->permissions != 0) {
+  if (s->permissions != UNAUTHORIZED) {
     log_auth(s->username, 1);
     printf("Access granted. Permissions: 0x%02x\n", s->permissions);
 
