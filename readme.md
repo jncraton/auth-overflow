@@ -34,7 +34,8 @@ make test
 
 ## Tasks
 
-1. Analyze `auth.c` to craft a set of inputs that allow you to successfully authenticate without a correct password.2. Document your findings, including the exact payload used and why it works.
+1. Analyze `auth.c` to craft a set of inputs that allow you to successfully authenticate without a correct password.
+2. Document your findings, including the exact payload used and why it works.
 
 ## Resources
 
