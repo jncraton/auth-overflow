@@ -72,6 +72,7 @@ void authenticate(Session *s) {
 
     log_auth(s->username, 0);
     printf("Access denied.\n");
+    exit(1);
   }
 }
 
