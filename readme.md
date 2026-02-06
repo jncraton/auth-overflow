@@ -34,6 +34,9 @@ make test
 
 ## Tasks
 
+> [!TIP]
+> This program requires a specific memory layout in order to be easily exploitable. It has been tested to work on x64 Linux, and it is recommended to explore in a similar environment.
+
 1. Analyze `auth.c` to craft a set of inputs that allow you to successfully authenticate without a correct password.
 2. Document your findings, including the exact payload used and why it works.
 
