@@ -41,7 +41,7 @@ make test
 
 - [Buffer Overflow (Wikipedia)](https://en.wikipedia.org/wiki/Buffer_overflow)
 - [C Memory Layout](https://en.wikibooks.org/wiki/C_Programming/Memory_management)
-- [The gets() Function](https://linux.die.net/man/3/gets)
+- [The fgets() Function](https://linux.die.net/man/3/fgets)
 
 ## Security Note
 
