@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-char *gets(char *s);
-
 typedef struct {
   int session_id;
   char password[16];
